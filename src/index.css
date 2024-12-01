@@ -1,0 +1,9 @@
+@import url('https://fonts.cdnfonts.com/css/general-sans');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  font-family: 'General Sans',sans-serif;
+}
