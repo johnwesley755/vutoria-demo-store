@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home"; // Home component
+import Home from "./pages/Home";
 import Cart from "./components/Cart"; // Cart component
 import ProductPage from "./pages/Product"; // ProductPage component
 import Header from "./components/Header"; // Header component
@@ -9,22 +9,57 @@ import WomensCollection from "./components/Layer"; // Women's Collection page (L
 import Spotlight from "./components/Spotlight"; // Spotlight component
 import CartDetail from "./components/CartDetail";
 import { CartProvider } from "./components/CartContext"; // Import CartProvider
+import  Hero  from "./components/Hero";
+import  ProductGrid  from "./components/ProductGrid";
+import  TryOnModal  from "./components/TryOnModel";
+import products  from "./data/products";
 
 const App = () => {
+  // State for Try-On functionality
+  const [tryOnState, setTryOnState] = useState({
+    isActive: false,
+    selectedProduct: null,
+  });
+
+  const handleTryOn = (product) => {
+    setTryOnState({
+      isActive: true,
+      selectedProduct: product,
+    });
+  };
+
+  const handleCloseTryOn = () => {
+    setTryOnState({
+      isActive: false,
+      selectedProduct: null,
+    });
+  };
+
   return (
     <CartProvider>
-      {" "}
       {/* Wrapping the app with CartProvider */}
       <Router>
         <div className="flex flex-col min-h-screen">
           {/* Header Component */}
-          <Header />
+          <Header
+            onTryOnClick={() =>
+              setTryOnState({ ...tryOnState, isActive: true })
+            }
+          />
 
           {/* Main Content */}
           <main className="flex-grow">
             <Routes>
               {/* Home page */}
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Home />
+                    <ProductGrid products={products} onTryOn={handleTryOn} />
+                  </>
+                }
+              />
               <Route path="/spotlight" element={<Spotlight />} />
 
               {/* Cart page */}
@@ -53,6 +88,13 @@ const App = () => {
           <Footer />
         </div>
       </Router>
+
+      {/* Try-On Modal */}
+      <TryOnModal
+        isOpen={tryOnState.isActive}
+        onClose={handleCloseTryOn}
+        selectedProduct={tryOnState.selectedProduct}
+      />
     </CartProvider>
   );
 };

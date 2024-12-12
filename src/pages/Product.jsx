@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
 
-const ProductPage = () => {
+const ProductPage = ({ onTryOn }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = products.find((item) => item.id === id);
 
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [showTryButton, setShowTryButton] = useState(false);
 
   if (!product) {
     return (
@@ -25,14 +24,6 @@ const ProductPage = () => {
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
-  };
-
-  const handleTryNowClick = () => {
-    if (selectedSize && selectedColor) {
-      setShowTryButton(true);
-    } else {
-      setShowTryButton(false);
-    }
   };
 
   const handleNavigateToProduct = (id) => {
@@ -103,7 +94,7 @@ const ProductPage = () => {
             <div className="mt-6 flex gap-5">
               <div>
                 <button
-                  onClick={handleTryNowClick}
+                  onClick={() => onTryOn(product)}
                   className={`px-6 py-3 bg-yellow-600 font-semibold text-white rounded-lg ${
                     selectedSize && selectedColor
                       ? "hover:bg-yellow-500"
@@ -178,7 +169,6 @@ const ProductPage = () => {
                     {item.price}
                   </p>
                   <div className="flex gap-5">
-                    
                     <button
                       onClick={() => handleNavigateToProduct(item.id)}
                       className="mt-4 px-4 py-2 bg-yellow-600 font-semibold text-white rounded hover:bg-yellow-500"
