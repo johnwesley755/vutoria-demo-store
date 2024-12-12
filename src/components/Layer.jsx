@@ -1,5 +1,5 @@
 import React from "react";
-import products from "../data/products";
+import { products } from "../data/products";
 import { Link } from "react-router-dom";
 const WomensCollection = () => {
   const womensProducts = products.filter(

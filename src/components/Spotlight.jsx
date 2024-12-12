@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "./CartContext"; // Correct import
-import products from "../data/products";
+import { products } from "../data/products";
 
-const Spotlight = () => {
+const Spotlight = ({ product, onAddToCart, onTryOn }) => {
   const { addToCart } = useContext(CartContext); // Accessing addToCart from CartContext
 
   const handleAddToCart = (product) => {
@@ -24,7 +24,7 @@ const Spotlight = () => {
           it all. Upgrade your wardrobe with the best in fashion.
         </p>
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10">
           {products.slice(0, 8).map((product) => (
             <div
               key={product.id}
@@ -77,8 +77,11 @@ const Spotlight = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-2 truncate">
                   {product.name}
                 </h3>
-                <p className="text-lg text-gray-600 font-semibold mb-4">
+                <p className="text-lg text-gray-600 font-semibold mb-2">
                   {product.price}
+                </p>
+                <p className="text-lg text-gray-600 mb-4">
+                  {product.description}
                 </p>
 
                 {/* Action Buttons */}
@@ -89,6 +92,12 @@ const Spotlight = () => {
                   >
                     View Details
                   </Link>
+                  <button
+                    onClick={() => onTryOn(product)}
+                    className="px-5 py-2 text-sm font-bold text-white bg-purple-600 rounded hover:bg-purple-700 shadow-md transition"
+                  >
+                    Try On
+                  </button>
                   <button
                     className="px-5 py-2 text-sm font-bold text-white bg-purple-500 rounded hover:bg-purple-400 shadow-md transition"
                     onClick={() => alert(`Buying ${product.name}!`)}

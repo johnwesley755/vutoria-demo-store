@@ -9,10 +9,10 @@ import WomensCollection from "./components/Layer"; // Women's Collection page (L
 import Spotlight from "./components/Spotlight"; // Spotlight component
 import CartDetail from "./components/CartDetail";
 import { CartProvider } from "./components/CartContext"; // Import CartProvider
-import  Hero  from "./components/Hero";
+import Mens from "./pages/Mens";
 import  ProductGrid  from "./components/ProductGrid";
 import  TryOnModal  from "./components/TryOnModel";
-import products  from "./data/products";
+import { products }  from "./data/products";
 
 const App = () => {
   // State for Try-On functionality
@@ -81,6 +81,7 @@ const App = () => {
                   </h1>
                 }
               />
+              <Route path="/mens" element={<Mens />} />
             </Routes>
           </main>
 

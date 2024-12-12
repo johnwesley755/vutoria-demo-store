@@ -22,12 +22,11 @@ const Header = () => {
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
-          <a
-            href="#men"
+          <Link to='/mens'
             className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
           >
             Men
-          </a>
+          </Link>
           <a
             href="#women"
             className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
