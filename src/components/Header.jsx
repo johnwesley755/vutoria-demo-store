@@ -1,233 +1,215 @@
-import React, { useContext, useState } from "react";
-import logoImg from "../assets/logo-1.png";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../AuthContext"; // Import AuthContext
+import { useAuth } from "../context/AuthContext";
+import { FaShoppingCart, FaBars, FaSearch } from "react-icons/fa";
+import { FiLogIn, FiLogOut, FiUserPlus } from "react-icons/fi";
+import logoImg from "../assets/logo-1.png";
 
 const Header = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext); // Use AuthContext
+  const { user, logout } = useAuth();
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleLogout = async () => {
-    try {
-      await logout(); // Call the logout function from context
-    } catch (error) {
-      console.error("Error during logout:", error.message);
-    }
+    await logout();
   };
 
-  return (
-    <>
-      {/* Header Section */}
-      <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md sticky top-0 z-50">
-        {/* Logo Section */}
-        <Link to="/">
-          <div className="flex items-center">
-            <img src={logoImg} alt="Vutoria Logo" className="w-32" />
-          </div>
-        </Link>
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex space-x-6">
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log("Search Query:", searchQuery);
+  };
+
+  // Close the sidebar when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        isSidebarOpen &&
+        !e.target.closest(".sidebar") &&
+        !e.target.closest(".toggle-btn")
+      ) {
+        setSidebarOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isSidebarOpen]);
+
+  return (
+    <header className="bg-white shadow-md p-4 flex justify-between items-center relative">
+      {/* Logo */}
+      <Link to="/" className="flex items-center">
+        <img
+          src={logoImg}
+          alt="E-Commerce Logo"
+          className="h-10 w-auto md:h-12"
+        />
+      </Link>
+
+      {/* Search Bar */}
+      <form
+        onSubmit={handleSearch}
+        className="flex items-center w-full max-w-md bg-gray-100 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-purple-600 transition mx-4"
+      >
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search for products..."
+          className="flex-1 px-4 py-2 text-gray-700 bg-transparent border-none outline-none"
+        />
+        <button
+          type="submit"
+          className="text-black font-bold px-4 py-2 flex items-center justify-center"
+        >
+          <FaSearch />
+        </button>
+      </form>
+
+      {/* Navigation */}
+      <nav className="hidden md:flex items-center font-semibold space-x-6">
+        <Link to="/" className="text-gray-700 hover:text-purple-600 transition">
+          Home
+        </Link>
+        <Link
+          to="/mens"
+          className="text-gray-700 hover:text-purple-600 transition"
+        >
+          Mens
+        </Link>
+        <Link
+          to="/womens"
+          className="text-gray-700 hover:text-purple-600 transition"
+        >
+          Womens
+        </Link>
+        <Link
+          to="/kids"
+          className="text-gray-700 hover:text-purple-600 transition"
+        >
+          Kids
+        </Link>
+        <Link
+          to="/cart"
+          className="relative text-gray-700 hover:text-purple-600 flex items-center"
+        >
+          <FaShoppingCart className="text-xl" />
+          <span className="absolute -top-2 -right-3 bg-purple-600 text-white text-xs rounded-full px-2 py-1">
+            3
+          </span>
+        </Link>
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="bg-purple-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-purple-700 transition"
+          >
+            <FiLogOut className="mr-1" />
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="bg-purple-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-purple-700 transition"
+            >
+              <FiLogIn className="mr-1" />
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-green-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-green-700 transition"
+            >
+              <FiUserPlus className="mr-1" />
+              Sign Up
+            </Link>
+          </>
+        )}
+      </nav>
+
+      {/* Mobile Menu Toggle */}
+      <button
+        onClick={toggleSidebar}
+        className="toggle-btn md:hidden text-purple-600 focus:outline-none"
+      >
+        <FaBars className="text-xl" />
+      </button>
+
+      {/* Mobile Sidebar */}
+      {isSidebarOpen && (
+        <div className="sidebar absolute font-semibold top-0 left-0 w-2/3 h-screen bg-white shadow-lg z-50 flex flex-col p-4 space-y-4">
           <Link
             to="/"
-            className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
+            className="text-gray-700 hover:text-purple-600 transition"
+            onClick={toggleSidebar}
           >
             Home
           </Link>
           <Link
             to="/mens"
-            className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
+            className="text-gray-700 hover:text-purple-600 transition"
+            onClick={toggleSidebar}
           >
-            Men
+            Mens
           </Link>
           <Link
             to="/womens"
-            className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
+            className="text-gray-700 hover:text-purple-600 transition"
+            onClick={toggleSidebar}
           >
-            Women
+            Womens
           </Link>
           <Link
             to="/kids"
-            className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
+            className="text-gray-700 hover:text-purple-600 transition"
+            onClick={toggleSidebar}
           >
             Kids
           </Link>
-          {!user ? (
+          <Link
+            to="/cart"
+            className="text-gray-700 hover:text-purple-600 transition flex items-center"
+            onClick={toggleSidebar}
+          >
+            <FaShoppingCart className="mr-2" />
+            Cart
+          </Link>
+          {user ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                toggleSidebar();
+              }}
+              className="bg-purple-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-purple-700 transition"
+            >
+              <FiLogOut className="mr-1" />
+              Logout
+            </button>
+          ) : (
             <>
               <Link
                 to="/login"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+                className="bg-purple-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-purple-700 transition"
+                onClick={toggleSidebar}
               >
+                <FiLogIn className="mr-1" />
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+                className="bg-green-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-green-700 transition"
+                onClick={toggleSidebar}
               >
+                <FiUserPlus className="mr-1" />
                 Sign Up
               </Link>
             </>
-          ) : (
-            <button
-              onClick={handleLogout} // Call handleLogout when logout
-              className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-            >
-              Logout
-            </button>
           )}
-        </nav>
-
-        {/* Search and Cart Section */}
-        <div className="flex items-center space-x-6">
-          {/* Search Input */}
-          <div className="relative hidden md:block">
-            <input
-              type="text"
-              placeholder="Search"
-              className="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
-            />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Cart Icon */}
-          <Link to="/cart">
-            <button className="relative text-gray-700 hover:text-gray-900 transition duration-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3h2l.34 2M7 13h10l4-8H5.36m1.25 8L5.41 5m2 12h10m0 0c0 .825-.675 1.5-1.5 1.5h-9c-.825 0-1.5-.675-1.5-1.5m12.5 0c0 .825-.675 1.5-1.5 1.5m-9 0c0 .825-.675 1.5-1.5 1.5m12.5-3h1"
-                />
-              </svg>
-            </button>
-          </Link>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-700 focus:outline-none"
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
-        </div>
-      </header>
-
-      {/* Sidebar for Mobile Navigation */}
-      {isSidebarOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex">
-          <div className="w-3/4 bg-white h-full shadow-md flex flex-col">
-            <button
-              className="self-end m-4 text-gray-700 focus:outline-none"
-              onClick={() => setIsSidebarOpen(false)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <nav className="flex flex-col space-y-4 px-8 mt-8">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                to="/mens"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                Men
-              </Link>
-              <Link
-                to="/womens"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                Women
-              </Link>
-              <Link
-                to="/kids"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                Kids
-              </Link>
-              {!user ? (
-                <>
-                  <Link
-                    to="/login"
-                    className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
-                    Sign Up
-                  </Link>
-                </>
-              ) : (
-                <button
-                  onClick={handleLogout} // Call handleLogout when logout
-                  className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                >
-                  Logout
-                </button>
-              )}
-            </nav>
-          </div>
         </div>
       )}
-    </>
+    </header>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,26 +22,15 @@ import Womens from "./pages/Womens";
 import Kids from "./pages/Kids";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-
-// Authentication Context
-const AuthContext = createContext();
-
-// Custom hook to use AuthContext
-const useAuth = () => useContext(AuthContext);
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" replace />;
 };
 
 const App = () => {
-  // Authentication State
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
-
   // State for Try-On functionality
   const [tryOnState, setTryOnState] = useState({
     isActive: false,
@@ -57,7 +46,7 @@ const App = () => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthProvider>
       <CartProvider>
         <Router>
           <div className="flex flex-col min-h-screen">
@@ -68,7 +57,7 @@ const App = () => {
             <main className="flex-grow">
               <Routes>
                 {/* Public Routes */}
-                <Route path="/login" element={<Login onLogin={login} />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
 
                 {/* Protected Routes */}
@@ -170,7 +159,7 @@ const App = () => {
           selectedProduct={tryOnState.selectedProduct}
         />
       </CartProvider>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 };
 
