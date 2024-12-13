@@ -1,7 +1,5 @@
 import React from "react";
-import heroImg1 from "../assets/hero-img1.svg"; // Replace with your image paths
-import heroImg2 from "../assets/hero-img2.svg";
-import heroImg3 from "../assets/hero-img3.svg";
+
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (

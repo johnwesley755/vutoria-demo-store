@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-const Sidebar = ({ filters, onFilterChange, gender }) => {
+const Sidebar = ({ filters, onFilterChange, onResetFilters, gender }) => {
   const [isOpen, setIsOpen] = useState({
     category: true,
     style: true,
     color: true,
     size: true,
     price: true,
+    brand: true,
+    material: true,
+    discount: true,
   });
 
   const toggleSection = (section) => {
@@ -42,12 +45,22 @@ const Sidebar = ({ filters, onFilterChange, gender }) => {
 
   const colorOptions = ["Blue", "Black", "Brown", "White", "Green"];
   const sizeOptions = ["S", "M", "L", "XL"];
+  const brandOptions = ["Nike", "Adidas", "Puma", "Zara", "H&M"];
+  const materialOptions = ["Cotton", "Polyester", "Silk", "Wool"];
 
   return (
     <aside className="w-80 bg-gradient-to-b from-gray-100 to-gray-50 shadow-xl rounded-lg p-6">
       <h2 className="text-3xl font-extrabold mb-8 text-purple-600 text-center">
         Filters
       </h2>
+
+      {/* Reset Filters */}
+      <button
+        onClick={onResetFilters}
+        className="w-full mb-6 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow hover:bg-red-700 transition"
+      >
+        Reset Filters
+      </button>
 
       {/* Categories */}
       <div className="mb-8">
@@ -152,7 +165,7 @@ const Sidebar = ({ filters, onFilterChange, gender }) => {
         )}
       </div>
 
-      {/* Size */}
+      {/* Sizes */}
       <div className="mb-8">
         <div
           className="flex justify-between items-center cursor-pointer"
@@ -213,6 +226,102 @@ const Sidebar = ({ filters, onFilterChange, gender }) => {
             <p className="text-gray-700 mt-2 text-center font-medium">
               ₹{filters.price}
             </p>
+          </div>
+        )}
+      </div>
+
+      {/* Brands */}
+      <div className="mb-8">
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() => toggleSection("brand")}
+        >
+          <h3 className="text-lg font-bold text-gray-800">Brands</h3>
+          {isOpen.brand ? (
+            <FaChevronUp className="text-gray-500" />
+          ) : (
+            <FaChevronDown className="text-gray-500" />
+          )}
+        </div>
+        {isOpen.brand && (
+          <div className="mt-4 space-y-2">
+            {brandOptions.map((brand) => (
+              <label
+                key={brand}
+                className="flex items-center space-x-3 text-gray-700"
+              >
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value={brand}
+                  onChange={handleChange}
+                  className="h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+                />
+                <span className="font-medium">{brand}</span>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Material */}
+      <div className="mb-8">
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() => toggleSection("material")}
+        >
+          <h3 className="text-lg font-bold text-gray-800">Material</h3>
+          {isOpen.material ? (
+            <FaChevronUp className="text-gray-500" />
+          ) : (
+            <FaChevronDown className="text-gray-500" />
+          )}
+        </div>
+        {isOpen.material && (
+          <div className="mt-4 space-y-2">
+            {materialOptions.map((material) => (
+              <label
+                key={material}
+                className="flex items-center space-x-3 text-gray-700"
+              >
+                <input
+                  type="checkbox"
+                  name="material"
+                  value={material}
+                  onChange={handleChange}
+                  className="h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+                />
+                <span className="font-medium">{material}</span>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Discount */}
+      <div className="mb-8">
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() => toggleSection("discount")}
+        >
+          <h3 className="text-lg font-bold text-gray-800">Discount</h3>
+          {isOpen.discount ? (
+            <FaChevronUp className="text-gray-500" />
+          ) : (
+            <FaChevronDown className="text-gray-500" />
+          )}
+        </div>
+        {isOpen.discount && (
+          <div className="mt-4 space-y-2">
+            <label className="flex items-center space-x-3 text-gray-700">
+              <input
+                type="checkbox"
+                name="discount"
+                onChange={handleChange}
+                className="h-5 w-5 text-purple-600 rounded border-gray-300 focus:ring-purple-500"
+              />
+              <span className="font-medium">On Discount</span>
+            </label>
           </div>
         )}
       </div>
