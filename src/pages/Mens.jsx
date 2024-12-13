@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import { products } from "../data/products";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import heroImg from "../assets/4296444.jpg"
 
 const Mens = () => {
   const [filters, setFilters] = useState({
@@ -85,7 +86,7 @@ const Mens = () => {
       <div className="bg-gray-100 mt-1">
         <div className="relative opacity-90">
           <img
-            src="https://i.ytimg.com/vi/78W6ZZ25ww8/maxresdefault.jpg"
+            src={heroImg}
             alt="Mens Collection"
             className="w-full h-auto max-h-[600px] object-cover sm:h-[400px] md:h-[500px] lg:h-[600px]"
           />

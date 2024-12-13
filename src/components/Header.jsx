@@ -52,7 +52,7 @@ const Header = () => {
       {/* Search Bar */}
       <form
         onSubmit={handleSearch}
-        className="flex items-center w-full max-w-md bg-gray-100 rounded-lg overflow-hidden border border-gray-800 focus-within:ring-2 focus-within:ring-purple-600 transition mx-4"
+        className="flex items-center w-full max-w-md bg-gray-100 rounded-lg overflow-hidden border border-gray-500 focus-within:ring-2 focus-within:ring-purple-600 transition mx-4"
       >
         <input
           type="text"
