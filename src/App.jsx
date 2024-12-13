@@ -23,7 +23,9 @@ import Kids from "./pages/Kids";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-
+import TermsAndConditions from "./components/TermsAndConditions";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import ForgotPassword from "./components/ForgotPassword";
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -78,6 +80,7 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
+                <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route
                   path="/cart"
                   element={
@@ -134,7 +137,11 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
-
+                <Route
+                  path="/terms-and-conditions"
+                  element={<TermsAndConditions />}
+                />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 {/* 404 Fallback */}
                 <Route
                   path="*"

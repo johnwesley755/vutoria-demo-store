@@ -52,14 +52,14 @@ const Header = () => {
       {/* Search Bar */}
       <form
         onSubmit={handleSearch}
-        className="flex items-center w-full max-w-md bg-gray-100 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-purple-600 transition mx-4"
+        className="flex items-center w-full max-w-md bg-gray-100 rounded-lg overflow-hidden border border-gray-800 focus-within:ring-2 focus-within:ring-purple-600 transition mx-4"
       >
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for products..."
-          className="flex-1 px-4 py-2 text-gray-700 bg-transparent border-none outline-none"
+          className="flex-1 px-4 py-2 text-gray-700 bg-transparent outline-none"
         />
         <button
           type="submit"
