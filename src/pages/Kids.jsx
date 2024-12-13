@@ -40,7 +40,7 @@ const Mens = () => {
   const filteredProducts = products
     .filter((product) => {
       return (
-        product.gender === "Women" &&
+        product.gender === "Kids" &&
         (!filters.category.length ||
           filters.category.includes(product.category)) &&
         (!filters.style.length || filters.style.includes(product.style)) &&
@@ -85,8 +85,8 @@ const Mens = () => {
       <div className="bg-gray-100 mt-1">
         <div className="relative opacity-90">
           <img
-            src="https://i.pinimg.com/originals/cc/b3/4f/ccb34f51bba6597deec3bf36ed654315.gif"
-            alt="Womens Collection"
+            src="https://i.pinimg.com/originals/3c/41/ab/3c41ab736bc52789af651115e4f0a980.jpg"
+            alt="Kids Collection"
             className="w-full h-auto max-h-[600px] object-cover sm:h-[400px] md:h-[500px] lg:h-[600px]"
           />
         </div>
@@ -94,7 +94,7 @@ const Mens = () => {
 
       <header className="bg-purple-200 text-black py-4 px-6 shadow-md sticky top-0 z-10">
         <div className="flex justify-between items-center">
-          <h1 className="text-lg font-bold">Women's Store</h1>
+          <h1 className="text-lg font-bold">Kids Store</h1>
           <button
             onClick={toggleSidebar}
             className="lg:hidden bg-purple-500 px-4 py-2 rounded-md"
@@ -113,7 +113,7 @@ const Mens = () => {
           <Sidebar
             filters={filters}
             onFilterChange={handleFilterChange}
-            gender="Women"
+            gender="Kids"
           />
           <button
             onClick={toggleSidebar}
@@ -139,7 +139,7 @@ const Mens = () => {
               <a href="/" className="hover:underline">
                 Home
               </a>{" "}
-              / <span className="font-semibold">Women's Section</span>
+              / <span className="font-semibold">Kids Section</span>
             </nav>
             <select
               value={sortOption}

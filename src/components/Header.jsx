@@ -22,29 +22,30 @@ const Header = () => {
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
-          <Link to='/mens'
+          <Link
+            to="/"
+            className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
+          >
+            Home
+          </Link>
+          <Link
+            to="/mens"
             className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
           >
             Men
           </Link>
-          <a
-            href="#women"
+          <Link
+            to="/womens"
             className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
           >
             Women
-          </a>
-          <a
-            href="#kids"
+          </Link>
+          <Link
+            to="/kids"
             className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
           >
             Kids
-          </a>
-          <a
-            href="#accessories"
-            className="text-gray-700 hover:text-gray-900 font-medium transition duration-300"
-          >
-            Accessories
-          </a>
+          </Link>
         </nav>
 
         {/* Search and Cart Section */}
@@ -146,34 +147,34 @@ const Header = () => {
               </svg>
             </button>
             <nav className="flex flex-col space-y-4 px-8 mt-8">
-              <a
-                href="#men"
+              <Link
+                to="/"
+                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+                onClick={() => setIsSidebarOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to="/mens"
                 className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 Men
-              </a>
-              <a
-                href="#women"
+              </Link>
+              <Link
+                to="/womens"
                 className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 Women
-              </a>
-              <a
-                href="#kids"
+              </Link>
+              <Link
+                to="/kids"
                 className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 Kids
-              </a>
-              <a
-                href="#accessories"
-                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                Accessories
-              </a>
+              </Link>
             </nav>
           </div>
           <div className="w-1/4" onClick={() => setIsSidebarOpen(false)}></div>

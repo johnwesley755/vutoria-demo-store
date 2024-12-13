@@ -8,14 +8,14 @@ const ProductCard = ({ product, onAddToCart, onTryOn }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-transform transform hover:-translate-y-2"
+      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-2 transition-transform"
     >
       {/* Product Image with Hover Overlay */}
       <div className="relative aspect-w-3 aspect-h-4">
         <img
           src={product.image || product.img}
           alt={product.name}
-          className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover hover:scale-105 transition-transform duration-300"
         />
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -49,31 +49,33 @@ const ProductCard = ({ product, onAddToCart, onTryOn }) => {
 
       {/* Product Info */}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 truncate">
+        <h3 className="text-lg md:text-xl font-bold text-gray-900 truncate">
           {product.name}
         </h3>
-        <p className="mt-1 text-gray-500 truncate">{product.description}</p>
-        <p className="mt-2 text-xl font-bold text-purple-600">
-          {product.price}
+        <p className="mt-1 text-sm md:text-base text-gray-500 truncate">
+          {product.description}
+        </p>
+        <p className="mt-2 text-lg md:text-xl font-bold text-purple-600">
+          ₹{product.price}
         </p>
 
         {/* Action Buttons */}
-        <div className="mt-4 flex gap-5 items-center">
+        <div className="mt-4 flex flex-wrap gap-3">
           <Link
             to={`/product/${product.id}`}
-            className="px-5 py-2 text-sm font-bold text-gray-800 bg-gray-300 rounded hover:bg-gray-400 shadow-md transition"
+            className="flex-1 min-w-[120px] px-4 py-2 text-center text-sm font-bold text-gray-800 bg-gray-300 rounded hover:bg-gray-400 shadow-md transition"
           >
             View Details
           </Link>
           <button
             onClick={() => onTryOn(product)}
-            className="px-5 py-2 text-sm font-bold text-white bg-purple-600 rounded hover:bg-purple-700 shadow-md transition"
+            className="flex-1 min-w-[120px] px-4 py-2 text-center text-sm font-bold text-white bg-purple-600 rounded hover:bg-purple-700 shadow-md transition"
           >
             Try On
           </button>
           <button
             onClick={() => alert(`Buying ${product.name}!`)}
-            className="px-5 py-2 text-sm font-bold text-purple-600 border border-purple-600 rounded hover:bg-purple-600 hover:text-white transition"
+            className="flex-1 min-w-[120px] px-4 py-2 text-center text-sm font-bold text-purple-600 border border-purple-600 rounded hover:bg-purple-600 hover:text-white transition"
           >
             Buy Now
           </button>

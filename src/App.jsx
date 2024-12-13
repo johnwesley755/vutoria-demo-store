@@ -13,7 +13,8 @@ import Mens from "./pages/Mens";
 import  ProductGrid  from "./components/ProductGrid";
 import  TryOnModal  from "./components/TryOnModel";
 import { products }  from "./data/products";
-
+import Womens from "./pages/Womens";
+import Kids from "./pages/Kids";
 const App = () => {
   // State for Try-On functionality
   const [tryOnState, setTryOnState] = useState({
@@ -82,6 +83,8 @@ const App = () => {
                 }
               />
               <Route path="/mens" element={<Mens />} />
+              <Route path="/womens" element={<Womens />} />
+              <Route path="/kids" element={<Kids />} />
             </Routes>
           </main>
 

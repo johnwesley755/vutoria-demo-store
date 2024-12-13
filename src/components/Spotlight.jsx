@@ -6,7 +6,12 @@ import { products } from "../data/products";
 const Spotlight = ({ product, onAddToCart, onTryOn }) => {
   const { addToCart } = useContext(CartContext); // Accessing addToCart from CartContext
 
-  const handleAddToCart = (product) => {
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Handles adding a product to the cart.
+ * @param {Object} product - The product object to add to the cart.
+ */
+/******  d3449a1e-048f-4700-881e-0c4ce163c113  *******/  const handleAddToCart = (product) => {
     console.log("Adding to cart:", product); // Debugging log
     addToCart(product); // Calling addToCart
   };
@@ -77,29 +82,29 @@ const Spotlight = ({ product, onAddToCart, onTryOn }) => {
                 <h3 className="text-xl font-bold text-gray-900 mb-2 truncate">
                   {product.name}
                 </h3>
-                <p className="text-lg text-gray-600 font-semibold mb-2">
-                  {product.price}
-                </p>
-                <p className="text-lg text-gray-600 mb-4">
+                <p className="text-lg text-gray-600 mb-2">
                   {product.description}
+                </p>
+                <p className="text-xl text-purple-600 font-bold mb-4">
+                  {product.price}
                 </p>
 
                 {/* Action Buttons */}
-                <div className="flex gap-5 items-center mt-6">
+                <div className="flex flex-wrap gap-3 items-center mt-6">
                   <Link
                     to={`/product/${product.id}`}
-                    className="px-5 py-2 text-sm font-bold text-gray-800 bg-gray-300 rounded hover:bg-gray-400 shadow-md transition"
+                    className="flex-1 min-w-[120px] px-4 py-2 text-sm font-bold text-gray-800 bg-gray-300 rounded hover:bg-gray-400 shadow-md transition text-center"
                   >
                     View Details
                   </Link>
                   <button
                     onClick={() => onTryOn(product)}
-                    className="px-5 py-2 text-sm font-bold text-white bg-purple-600 rounded hover:bg-purple-700 shadow-md transition"
+                    className="flex-1 min-w-[120px] px-4 py-2 text-sm font-bold text-white bg-purple-600 rounded hover:bg-purple-700 shadow-md transition text-center"
                   >
                     Try On
                   </button>
                   <button
-                    className="px-5 py-2 text-sm font-bold text-white bg-purple-500 rounded hover:bg-purple-400 shadow-md transition"
+                    className="flex-1 min-w-[120px] px-4 py-2 text-sm font-bold text-purple-500 bg-transparent border border-purple-500 rounded hover:bg-purple-600 hover:text-white shadow-md transition text-center"
                     onClick={() => alert(`Buying ${product.name}!`)}
                   >
                     Buy Now

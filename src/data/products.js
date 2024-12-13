@@ -175,7 +175,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#FFB6C1", "#FFC0CB", "#FFD700"],
     style: "Casual",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Perfect for warm weather!" },
       { rating: 4, comment: "A bit long but beautiful." },
@@ -191,7 +191,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#0000FF", "#8B0000", "#00FF00"],
     style: "Casual",
-    gender: "Boys",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "My son loves it, it's very comfortable!" },
       { rating: 4, comment: "Good hoodie, but the sleeves are a bit long." },
@@ -207,7 +207,7 @@ export const products = [
     sizes: ["0-3 months", "3-6 months", "6-12 months"],
     colors: ["#FFC0CB", "#FF69B4", "#F0E68C"],
     style: "Casual",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Adorable dress, fits perfectly!" },
       { rating: 4, comment: "Cute, but a little tight around the waist." },
@@ -296,7 +296,7 @@ export const products = [
     sizes: ["7", "8", "9", "10"],
     colors: ["#000000", "#808080", "#F5F5F5"],
     style: "Casual",
-    gender: "Boys",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "My son loves them, they are really comfortable." },
       { rating: 4, comment: "Good shoes, but they could use more padding." },
@@ -312,7 +312,7 @@ export const products = [
     sizes: ["5", "6", "7"],
     colors: ["#FF6347", "#FFC0CB", "#FFFF00"],
     style: "Casual",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Adorable shoes, perfect for everyday wear." },
       { rating: 4, comment: "Nice shoes, but a bit tight." },
@@ -344,7 +344,7 @@ export const products = [
     sizes: ["5", "6", "7", "8"],
     colors: ["#FF6347", "#FFC0CB", "#FFFF00"],
     style: "Formal",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Beautiful boots, perfect for special occasions!" },
       { rating: 4, comment: "Great boots, but the heel is a little too high." },
@@ -392,7 +392,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#FF6347", "#FFD700", "#8B4513"],
     style: "Winter",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       {
         rating: 5,
@@ -414,7 +414,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#000000", "#B22222", "#1E90FF"],
     style: "Winter",
-    gender: "Boys",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Perfect for cold days, very comfortable!" },
       { rating: 4, comment: "Good quality, but a bit tight." },
@@ -522,7 +522,7 @@ export const products = [
     sizes: ["One size"],
     colors: ["#FF6347", "#FFD700", "#B22222"],
     style: "Winter",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Perfect for the winter, keeps her hands warm!" },
       { rating: 4, comment: "Cute mittens, but they are a bit large." },
@@ -573,7 +573,7 @@ export const products = [
     sizes: ["7", "8", "9", "10"],
     colors: ["#000000", "#1E90FF", "#B22222"],
     style: "Winter",
-    gender: "Boys",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Great winter boots, very warm and durable." },
       { rating: 4, comment: "Good boots, but they could be a bit lighter." },
@@ -589,7 +589,7 @@ export const products = [
     sizes: ["7", "8", "9", "10"],
     colors: ["#FF6347", "#A52A2A", "#000000"],
     style: "Winter",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       {
         rating: 5,
@@ -662,7 +662,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#000000", "#1E90FF", "#8B0000"],
     style: "Winter",
-    gender: "Boys",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Keeps my son warm and dry during skiing." },
       { rating: 4, comment: "Great jacket, but a bit heavy." },
@@ -678,7 +678,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#FF6347", "#A52A2A", "#000000"],
     style: "Winter",
-    gender: "Girls",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Perfect for snow days, my daughter loves it!" },
       { rating: 4, comment: "Good jacket, but the fit is a little large." },
@@ -694,7 +694,7 @@ export const products = [
     sizes: ["S", "M", "L"],
     colors: ["#000000", "#A52A2A", "#1E90FF"],
     style: "Casual",
-    gender: "Boys",
+    gender: "Kids",
     reviews: [
       { rating: 5, comment: "Very warm and soft, my son loves it!" },
       {
