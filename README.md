@@ -58,7 +58,7 @@ Follow these steps to run the project locally:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/username/vuforia.git
+git clone https://github.com/username/vutoria-demo-store.git
 cd vuforia
 ```
 
@@ -74,7 +74,7 @@ npm install
 npm start
 ```
 
-The app will be live at `http://localhost:3000`.
+The app will be live at `http://localhost:5173`.
 
 ---
 
@@ -97,12 +97,6 @@ The app will be live at `http://localhost:3000`.
 
 ---
 
-## 📸 Demo
-
-Check out a live demo of Vutoria 👉 [Live Demo Link](https://vuforia-demo.web.app/)
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please follow the steps below:
@@ -118,8 +112,11 @@ Contributions are welcome! Please follow the steps below:
 ## 📧 Contact
 
 - **John Wesley** - Developer  
-  📩 Email: [johnwesley8113@gmail.com](mailto:johnwesley8113@gmail.com)  
+  📩 Email: [johnwesley8113@gmail.com](mailto:johnwesley8113@gmail.com)
   🔗 LinkedIn: [John Wesley](https://www.linkedin.com/in/john-wesley-6707ab258/)
+
+  - **Mohammed Habib** - Developer  
+  🔗 LinkedIn: [Mohammed Habib](https://www.linkedin.com/in/mohmdhabib/)
 
 ---
 
