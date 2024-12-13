@@ -1,7 +1,3 @@
-Here’s an enhanced README file for your Vuforia project, including folder structure, emojis, and special details:
-
----
-
 # 📸 Vutoria - AR-Powered Virtual Try-On
 
 Welcome to **Vuforia**, an innovative e-commerce platform featuring an **AI-powered virtual try-on system** for a seamless shopping experience. With Vuforia, users can visualize products in real-time before making a purchase, revolutionizing online shopping. 🚀
