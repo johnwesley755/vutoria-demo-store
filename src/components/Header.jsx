@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logoImg from "../assets/logo-1.png";
 import { Link } from "react-router-dom";
+import AuthContext from "../AuthContext"; // Import AuthContext
+
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]); // Cart state to hold added items
-
-  const addToCart = (product) => {
-    setCartItems([...cartItems, product]); // Add item to cart
+  const { user, logout } = useContext(AuthContext); // Use AuthContext
+  const handleLogout = async () => {
+    try {
+      await logout(); // Call the logout function from context
+    } catch (error) {
+      console.error("Error during logout:", error.message);
+    }
   };
 
   return (
@@ -46,6 +51,29 @@ const Header = () => {
           >
             Kids
           </Link>
+          {!user ? (
+            <>
+              <Link
+                to="/login"
+                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+              >
+                Sign Up
+              </Link>
+            </>
+          ) : (
+            <button
+              onClick={handleLogout} // Call handleLogout when logout
+              className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+            >
+              Logout
+            </button>
+          )}
         </nav>
 
         {/* Search and Cart Section */}
@@ -92,11 +120,6 @@ const Header = () => {
                   d="M3 3h2l.34 2M7 13h10l4-8H5.36m1.25 8L5.41 5m2 12h10m0 0c0 .825-.675 1.5-1.5 1.5h-9c-.825 0-1.5-.675-1.5-1.5m12.5 0c0 .825-.675 1.5-1.5 1.5m-9 0c0 .825-.675 1.5-1.5 1.5m12.5-3h1"
                 />
               </svg>
-              {cartItems.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs px-1">
-                  {cartItems.length}
-                </span>
-              )}
             </button>
           </Link>
 
@@ -175,9 +198,33 @@ const Header = () => {
               >
                 Kids
               </Link>
+              {!user ? (
+                <>
+                  <Link
+                    to="/login"
+                    className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              ) : (
+                <button
+                  onClick={handleLogout} // Call handleLogout when logout
+                  className="text-gray-700 hover:text-purple-500 font-medium transition duration-300"
+                >
+                  Logout
+                </button>
+              )}
             </nav>
           </div>
-          <div className="w-1/4" onClick={() => setIsSidebarOpen(false)}></div>
         </div>
       )}
     </>
