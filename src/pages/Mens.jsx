@@ -93,7 +93,7 @@ const Mens = () => {
         </div>
       </div>
 
-      <header className="bg-purple-200 text-black py-4 px-6 shadow-md sticky top-0 z-10">
+      <header className="bg-purple-200 text-black py-4 px-6 shadow-md top-0 z-10">
         <div className="flex justify-between items-center">
           <h1 className="text-lg font-bold">Men's Store</h1>
           <button

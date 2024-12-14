@@ -183,7 +183,7 @@ const TryOnModal = ({ isOpen, onClose, selectedProduct }) => {
                         <ScanEffect />
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-4">
                           <p className="text-white text-xl font-bold">
-                            ${selectedProduct.price}
+                            {selectedProduct.price}
                           </p>
                         </div>
                       </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Sidebar = ({ filters, onFilterChange, onResetFilters, gender }) => {
+  
   const [isOpen, setIsOpen] = useState({
     category: true,
     style: true,
@@ -49,7 +50,7 @@ const Sidebar = ({ filters, onFilterChange, onResetFilters, gender }) => {
   const materialOptions = ["Cotton", "Polyester", "Silk", "Wool"];
 
   return (
-    <aside className="w-80 bg-gradient-to-b from-gray-100 to-gray-50 shadow-xl rounded-lg p-6">
+    <aside className="w-80 bg-purple-100 shadow-xl rounded-lg p-6 min-h-screen">
       <h2 className="text-3xl font-extrabold mb-8 text-purple-600 text-center">
         Filters
       </h2>
@@ -218,13 +219,14 @@ const Sidebar = ({ filters, onFilterChange, onResetFilters, gender }) => {
               type="range"
               name="price"
               min="0"
-              max="1000"
-              value={filters.price}
-              onChange={handleChange}
+              max="10000"
+              step="100" // Ensures consistent increments
+              value={filters.price || 0} // Fallback to 0 if undefined
+              onChange={(e) => onFilterChange("price", Number(e.target.value))} // Update filter value as a number
               className="w-full h-2 bg-gray-300 rounded-lg accent-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             <p className="text-gray-700 mt-2 text-center font-medium">
-              ₹{filters.price}
+              ₹{filters.price || 0}
             </p>
           </div>
         )}

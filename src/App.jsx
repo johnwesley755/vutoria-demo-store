@@ -26,6 +26,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import TermsAndConditions from "./components/TermsAndConditions";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import ForgotPassword from "./components/ForgotPassword";
+
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -67,8 +68,13 @@ const App = () => {
                   path="/"
                   element={
                     <ProtectedRoute>
-                      <Home />
-                      <ProductGrid products={products} onTryOn={handleTryOn} />
+                      <div>
+                        <Home />
+                        <ProductGrid
+                          products={products}
+                          onTryOn={handleTryOn}
+                        />
+                      </div>
                     </ProtectedRoute>
                   }
                 />
@@ -80,7 +86,7 @@ const App = () => {
                     </ProtectedRoute>
                   }
                 />
-                <Route path='/forgot-password' element={<ForgotPassword />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route
                   path="/cart"
                   element={

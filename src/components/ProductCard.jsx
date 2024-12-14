@@ -56,7 +56,7 @@ const ProductCard = ({ product, onAddToCart, onTryOn }) => {
           {product.description}
         </p>
         <p className="mt-2 text-lg md:text-xl font-bold text-purple-600">
-          ₹{product.price}
+          {product.price}
         </p>
 
         {/* Action Buttons */}

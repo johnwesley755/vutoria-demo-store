@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Hero from '../components/Hero'
 import Slider from '../components/Slider'
 import VirtualTryOn from '../components/VirtualTryOn'
@@ -11,7 +10,6 @@ import Testimonials from '../components/Testimonials'
 const Home = () => {
   return (
     <div>
-
         <Slider />
         <Hero />
         <VirtualTryOn />
@@ -19,8 +17,7 @@ const Home = () => {
         <Layer />
         <Banner />
         <Testimonials />
- 
-    </div>
+        </div>
   )
 }
 
