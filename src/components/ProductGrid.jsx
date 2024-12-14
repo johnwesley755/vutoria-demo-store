@@ -1,46 +1,33 @@
 import React from "react";
-import { useInView } from "react-intersection-observer";
-import ProductCard  from "./ProductCard";
-import { motion } from "framer-motion";
+import ProductCard from "./ProductCard";
 
 const ProductGrid = ({ products, onTryOn }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
   return (
-    <section id="products" className="py-16 bg-gray-50">
+    <section
+      id="products"
+      className="py-20 bg-gradient-to-b from-gray-100 to-gray-200"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-3xl font-bold text-gray-900 mb-8 text-center"
-        >
-          Featured Collection
-        </motion.h2>
-        <motion.div
-          ref={ref}
-          variants={container}
-          initial="hidden"
-          animate={inView ? "show" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        {/* Section Heading */}
+        <div className="text-center mb-12">
+          <h2 className="text-5xl max-md:text-4xl font-bold text-gray-900 mb-4">
+            Featured Collection
+          </h2>
+          <p className="text-gray-600 text-lg max-md:text-base">
+            Discover the latest trends and styles, curated just for you. Explore
+            our diverse range of products and find your perfect match today.
+          </p>
+        </div>
+
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} onTryOn={onTryOn} />
           ))}
-        </motion.div>
+        </div>
       </div>
+
+     
     </section>
   );
 };

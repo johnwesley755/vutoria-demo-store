@@ -5,7 +5,7 @@ import ProductCard from "../components/ProductCard";
 import { products } from "../data/products";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import womenImg from "../assets/img-1.svg";
 const Mens = () => {
   const [filters, setFilters] = useState({
     category: [],
@@ -84,11 +84,7 @@ const Mens = () => {
       {/* Hero Section with Slider */}
       <div className="bg-gray-100 mt-1">
         <div className="relative opacity-90">
-          <img
-            src="https://i.pinimg.com/originals/cc/b3/4f/ccb34f51bba6597deec3bf36ed654315.gif"
-            alt="Womens Collection"
-            className="w-full h-auto max-h-[600px] object-cover sm:h-[400px] md:h-[500px] lg:h-[600px]"
-          />
+          <img src={womenImg} className="relative w-full overflow-hidden" />
         </div>
       </div>
 

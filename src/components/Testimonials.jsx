@@ -140,7 +140,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-12">
-      <h2 className="text-3xl font-semibold text-center mb-6">Testimonials</h2>
+      <h2 className="text-5xl max-md:text-4xl font-bold text-center mb-6">Testimonials</h2>
 
       <div className="overflow-hidden">
         {/* Testimonials Slider */}
